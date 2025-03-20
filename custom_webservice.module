@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for custom_webservice module.
+ */
+
+use Drupal\Component\Utility\Html;
+use Drupal\node\NodeInterface;
+
+/**
+ * * Implements hook_mail(). */
+function custom_webservice_mail($key, &$message, $params) {
+  $options = [
+    'langcode' => $message['langcode'],
+  ];
+  switch ($key) {
+    case 'add_user':
+      $message['from'] = \Drupal::config('system.site')->get('mail');
+      $message['subject'] = t('new user added');
+      $message['body'][] = Html::escape($params['message']);
+      $message['body'][] = Html::escape($params['link']);
+      break;
+  }
+}

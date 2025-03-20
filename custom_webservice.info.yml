@@ -1,0 +1,4 @@
+name: 'custom webservice'
+type: module
+description: 'This module helps use to add users in content with rest endpoint'
+core_version_requirement: ^10 || ^11
